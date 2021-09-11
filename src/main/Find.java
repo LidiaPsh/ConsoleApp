@@ -1,8 +1,8 @@
 package main;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 /*
 Вариант 4 — find
 
@@ -42,13 +42,13 @@ public class Find {
             }
         }
 
-        ArrayList<String> result = findFile(filename, directory, flagRec);
+        List<String> result = findFile(filename, directory, flagRec);
         if (!result.equals("")) System.out.println(result);
                      else System.out.println("File \""+filename+ "\" not found");
     }
 
-    public static ArrayList<String> findFile(String fileName, String directory, boolean flagRec) {
-        ArrayList<String> paths = new ArrayList<>();
+    public static List<String> findFile(String fileName, String directory, boolean flagRec) {
+        List<String> paths = new ArrayList<>();
         File dir = new File(directory);
         File[] filesInDirectory = dir.listFiles();
         if (filesInDirectory == null) return paths;
@@ -61,7 +61,7 @@ public class Find {
         if (flagRec) {
             for (File i : filesInDirectory) {
                 if (i.isDirectory()) {
-                    ArrayList<String> res = findFile(fileName, directory + File.separator + i.getName(), flagRec);
+                    List<String> res = findFile(fileName, directory + File.separator + i.getName(), flagRec);
                     if (res.size() > 0){
                         paths.addAll(res);
                     }
